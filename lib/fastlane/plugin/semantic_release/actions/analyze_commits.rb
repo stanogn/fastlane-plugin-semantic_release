@@ -86,17 +86,17 @@ module Fastlane
         parsed_version = tag_name.match(params[:tag_version_match])
 
         if parsed_version.nil?
-          UI.user_error!("Error while parsing version from tag #{tag_name} by using tag_version_match - #{params[:tag_version_match]}. Please check if the tag contains version as you expect and if you are using single brackets for tag_version_match parameter.")
+          UI.user_error!("Error while parsing version from tag #{tag} by using tag_version_match - #{params[:tag_version_match]}. Please check if the tag contains version as you expect and if you are using single brackets for tag_version_match parameter.")
         end
 
         version = parsed_version[0]
         # Get a hash of last version tag
         hash = get_last_tag_hash(
-          tag_name: tag_name,
+          tag_name: tag,
           debug: params[:debug]
         )
 
-        UI.message("Found a tag #{tag_name} associated with version #{version}")
+        UI.message("Found a tag #{tag} associated with version #{version}")
 
         return {
           hash: hash,

@@ -77,8 +77,11 @@ module Fastlane
         # See git describe man page for more info
         # It can be also v2.3.4-5 if there is no commit after tag
         tag_name = tag
-        if tag.split('-').length >= 3
-          tag_name = tag.split('-')[0...-2].join('-').strip
+        if tag_name.include?('/')
+          tag_name = tag_name.split('/')[-1]
+        end
+        if tag_name.split('-').length >= 3
+          tag_name = tag_name.split('-')[0...-2].join('-').strip
         end
         parsed_version = tag_name.match(params[:tag_version_match])
 
